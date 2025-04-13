@@ -28,5 +28,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    void compute(char action);
 };
 #endif // MAINWINDOW_H

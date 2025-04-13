@@ -15,38 +15,52 @@ MainWindow::~MainWindow()
 
 double firstNum, secondNum, result;
 
-void MainWindow::on_btnAdd_clicked()
-{
+void MainWindow::compute(char action) {
+
     firstNum = ui->txtFirstNum->text().toDouble();
     secondNum = ui->txtSecondNum->text().toDouble();
-    result = firstNum + secondNum;
+
+    switch(action) {
+    case '+':
+        result = firstNum + secondNum;
+        break;
+    case '-':
+        result = firstNum - secondNum;
+        break;
+    case '/':
+        result = firstNum / secondNum;
+        break;
+    case '*':
+        result = firstNum * secondNum;
+        break;
+    default:
+        ui->txtResult->setText("Error");
+        return;
+    }
+
     ui->txtResult->setText(QString::number(result));
+}
+
+void MainWindow::on_btnAdd_clicked()
+{
+    compute('+');
 }
 
 
 void MainWindow::on_btnSubtract_clicked()
 {
-    firstNum = ui->txtFirstNum->text().toDouble();
-    secondNum = ui->txtSecondNum->text().toDouble();
-    result = firstNum - secondNum;
-    ui->txtResult->setText(QString::number(result));
+    compute('-');
 }
 
 
 void MainWindow::on_btnDivide_clicked()
 {
-    firstNum = ui->txtFirstNum->text().toDouble();
-    secondNum = ui->txtSecondNum->text().toDouble();
-    result = firstNum / secondNum;
-    ui->txtResult->setText(QString::number(result));
+    compute('/');
 }
 
 
 void MainWindow::on_btnMultiply_clicked()
 {
-    firstNum = ui->txtFirstNum->text().toDouble();
-    secondNum = ui->txtSecondNum->text().toDouble();
-    result = firstNum * secondNum;
-    ui->txtResult->setText(QString::number(result));
+    compute('*');
 }
 
